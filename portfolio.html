@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mon Portfolio - Projets Académiques & Professionnels</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Georgia", "Times New Roman", serif;
+        line-height: 1.8;
+        color: #2c3e50;
+        background: #f8f9fa;
+      }
+
+      header {
+        background: linear-gradient(to bottom, #1a1a2e 0%, #16213e 100%);
+        color: #ecf0f1;
+        padding: 4rem 2rem 3rem;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .profile-photo {
+        margin: 0 auto 2rem;
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 6px solid #ecf0f1;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        transition: transform 0.4s ease;
+      }
+
+      .profile-photo:hover {
+        transform: translateY(-5px);
+      }
+
+      .profile-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 5%;
+        cursor: pointer;
+      }
+
+      header h1 {
+        font-size: 2.8rem;
+        margin-bottom: 0.8rem;
+        font-weight: 400;
+        letter-spacing: 1px;
+        color: #ecf0f1;
+      }
+
+      header p {
+        font-size: 1.1rem;
+        opacity: 0.92;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        max-width: 700px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      nav {
+        background: #ffffff;
+        padding: 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        border-bottom: 3px solid #16213e;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 0;
+        flex-wrap: wrap;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      nav li {
+        flex: 1;
+        min-width: 120px;
+      }
+
+      nav a {
+        display: block;
+        color: #16213e;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 1.2rem 1.5rem;
+        transition: all 0.3s ease;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        text-align: center;
+        border-bottom: 3px solid transparent;
+      }
+
+      nav a:hover {
+        background: #f8f9fa;
+        color: #0f3460;
+        border-bottom-color: #0f3460;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 3rem 2rem;
+      }
+
+      section {
+        background: #ffffff;
+        margin: 3rem 0;
+        padding: 3rem;
+        border-radius: 2px;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+        border-top: 4px solid #16213e;
+      }
+
+      h2 {
+        color: #16213e;
+        margin-bottom: 2rem;
+        font-size: 2.2rem;
+        font-weight: 400;
+        letter-spacing: 0.5px;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid #e8ebed;
+      }
+
+      .project {
+        margin-bottom: 2.5rem;
+        padding: 2rem;
+        border-left: 5px solid #34495e;
+        background: #fafbfc;
+        transition: all 0.3s ease;
+        border-radius: 2px;
+      }
+
+      .project:hover {
+        border-left-color: #16213e;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        transform: translateX(3px);
+      }
+
+      .project h3 {
+        color: #16213e;
+        margin-bottom: 0.8rem;
+        font-size: 1.5rem;
+        font-weight: 500;
+      }
+
+      .project .date {
+        color: #7f8c8d;
+        font-style: italic;
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .project .description {
+        color: #34495e;
+        margin: 1.2rem 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 1rem;
+      }
+
+      .project .tags {
+        display: flex;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+        margin-top: 1.5rem;
+      }
+
+      .tag {
+        background: #34495e;
+        color: #ecf0f1;
+        padding: 0.4rem 1rem;
+        border-radius: 2px;
+        font-size: 0.85rem;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        transition: background 0.3s ease;
+      }
+
+      .tag:hover {
+        background: #16213e;
+      }
+
+      .contact-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        padding: 1rem;
+        background: #fafbfc;
+        border-radius: 2px;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .contact-item strong {
+        color: #16213e;
+        min-width: 100px;
+      }
+
+      #about p {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 1.05rem;
+        color: #34495e;
+      }
+
+      footer {
+        background: #1a1a2e;
+        color: #ecf0f1;
+        text-align: center;
+        padding: 2.5rem;
+        margin-top: 4rem;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      @media (max-width: 768px) {
+        header h1 {
+          font-size: 2rem;
+        }
+
+        .profile-photo {
+          width: 140px;
+          height: 140px;
+        }
+
+        nav ul {
+          flex-direction: column;
+        }
+
+        nav li {
+          width: 100%;
+        }
+
+        .container {
+          padding: 1.5rem 1rem;
+        }
+
+        section {
+          padding: 2rem 1.5rem;
+        }
+
+        h2 {
+          font-size: 1.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="profile-photo">
+        <img
+          src="https://i.imgur.com/Qnmcww7.jpeg"
+          alt="Photo de profil MAMCHAOUI Selmane Abdelatif"
+        />
+      </div>
+      <h1>MAMCHAOUI Selmane Abdelatif</h1>
+      <p>
+        Étudiant en Informatique - Systèmes Informatiques | Passionné par
+        l'Intelligence Artificielle et le Machine Learning
+      </p>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="#about">À Propos</a></li>
+        <li><a href="#academic">Projets Académiques</a></li>
+        <li><a href="#professional">Projets Professionnels</a></li>
+        <li><a href="#skills">Compétences</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <section id="about">
+        <h2>À Propos de Moi</h2>
+        <p>
+          Étudiant en troisième année de Cycle d'Ingénieur à l'École Nationale
+          Supérieure d'Informatique (ESI Alger), spécialité Systèmes
+          Informatiques. Actuellement en stage de fin d'études à l'Université du
+          Luxembourg (SNT – Interdisciplinary Centre for Security, Reliability
+          and Trust), où je travaille sur des approches avancées par réseaux de
+          neurones à hypergraphes pour l'imputation de valeurs manquantes dans
+          les séries temporelles.
+        </p>
+        <p style="margin-top: 1rem">
+          Habile à résoudre des problèmes et avide de nouveaux défis, je cherche
+          à enrichir mes compétences et connaissances dans les domaines du
+          Machine Learning, du Deep Learning et de l'analyse de données. Mon
+          objectif est de contribuer à l'innovation technologique en développant
+          des solutions intelligentes et performantes.
+        </p>
+        <p style="margin-top: 1rem">
+          <strong>Formation :</strong> Diplôme d'Ingénieur d'État et Master en
+          Informatique - spécialité Systèmes Informatiques (double diplôme) |
+          ESI Alger (2021-2026)
+        </p>
+      </section>
+
+      <section id="academic">
+        <h2>Projets Académiques</h2>
+
+        <div class="project">
+          <h3>Stage de fin d'études - Université du Luxembourg</h3>
+          <p class="date">
+            2025-2026 | SNT – Interdisciplinary Centre for Security, Reliability
+            and Trust
+          </p>
+          <p class="description">
+            <strong>Sujet :</strong> Approches avancées par réseaux de neurones
+            à hypergraphes pour l'imputation de valeurs manquantes dans les
+            séries temporelles.<br /><br />
+            Développement d'un modèle
+            <strong>Hypergraph Neural Network</strong> pour améliorer
+            l'imputation dans les séries temporelles multivariées. Ce projet
+            combine des techniques avancées de Deep Learning avec la théorie des
+            graphes pour résoudre des problèmes complexes de données manquantes.
+          </p>
+          <div class="tags">
+            <span class="tag">Deep Learning</span>
+            <span class="tag">Hypergraph Neural Networks</span>
+            <span class="tag">Séries Temporelles</span>
+            <span class="tag">Python</span>
+            <span class="tag">Recherche</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Prédiction du flux de trafic</h3>
+          <p class="date">Projet académique</p>
+          <p class="description">
+            Conception d'un modèle spatio-temporel basé sur les Graph Neural
+            Networks pour prévoir le trafic à partir de séries temporelles
+            corrélées spatialement. Ce projet démontre l'application des GNN aux
+            problèmes de prévision avec dépendances spatiales et temporelles
+            complexes.
+          </p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Pandas</span>
+            <span class="tag">PyTorch Geometric</span>
+            <span class="tag">Matplotlib</span>
+            <span class="tag">Graph Neural Networks</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Reconnaissance des types d'oiseaux</h3>
+          <p class="date">Projet académique</p>
+          <p class="description">
+            Conception d'un modèle Deep Learning pour reconnaître
+            automatiquement les oiseaux via images et sons, avec évaluation sur
+            un dataset volumineux et validation des performances. Application
+            pratique de Computer Vision et traitement du signal audio.
+          </p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">NumPy</span>
+            <span class="tag">Matplotlib</span>
+            <span class="tag">PyTorch</span>
+            <span class="tag">Computer Vision</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Prédiction de la consommation d'électricité en Allemagne</h3>
+          <p class="date">Projet académique</p>
+          <p class="description">
+            Développement et comparaison de modèles de Machine Learning et Deep
+            Learning pour la prédiction de la consommation d'électricité en
+            Allemagne. Implémentation et évaluation de plusieurs algorithmes :
+            Random Forest, Polynomial Regression, Lasso, Ridge, Elastic Net,
+            Robust Regression, et Artificial Neural Network.
+          </p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Pandas</span>
+            <span class="tag">NumPy</span>
+            <span class="tag">Matplotlib</span>
+            <span class="tag">Scikit-learn</span>
+            <span class="tag">TensorFlow</span>
+            <span class="tag">Machine Learning</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>MyPlanner - Application de planification</h3>
+          <p class="date">Projet académique</p>
+          <p class="description">
+            Développement d'une application de planification et de suivi des
+            activités et événements avec une interface utilisateur intuitive et
+            des fonctionnalités de gestion du temps avancées.
+          </p>
+          <div class="tags">
+            <span class="tag">Java</span>
+            <span class="tag">JavaFX</span>
+            <span class="tag">Développement logiciel</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Maily - Boîte aux lettres intelligente</h3>
+          <p class="date">Projet académique</p>
+          <p class="description">
+            Développement d'une application mobile pilotée par une boîte aux
+            lettres intelligente. Solution innovante combinant IoT et
+            développement mobile pour moderniser la gestion du courrier postal.
+          </p>
+          <div class="tags">
+            <span class="tag">Flutter</span>
+            <span class="tag">Dart</span>
+            <span class="tag">Firebase</span>
+            <span class="tag">C++</span>
+            <span class="tag">IoT</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="professional">
+        <h2>Expérience Professionnelle</h2>
+
+        <div class="project">
+          <h3>
+            Stage en Entreprise - Développement Application Promotionnelle
+          </h3>
+          <p class="date">Septembre 2024</p>
+          <p class="description">
+            Développement d'une application promotionnelle
+            <strong>"PanierPromo"</strong> basée sur la localisation permettant
+            aux utilisateurs de trouver des offres dans les magasins de la
+            grande distribution en France. <br /><br />
+            L'application exploite la géolocalisation pour proposer des
+            promotions personnalisées en temps réel, offrant une expérience
+            utilisateur fluide et intuitive.
+          </p>
+          <div class="tags">
+            <span class="tag">Flutter</span>
+            <span class="tag">Dart</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Python</span>
+            <span class="tag">Développement Mobile</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Projet Freelance - Migration de plugin RhinoCeros 8</h3>
+          <p class="date">Août - Septembre 2025</p>
+          <p class="description">
+            Migration d'un plugin nommé "FutureBridge" RhinoCeros 8 développé en
+            IronPython vers CPython avec intégration d'une interface web.
+            Modernisation complète du code et amélioration de l'architecture
+            pour assurer la compatibilité avec les dernières versions.
+          </p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">SQLite</span>
+            <span class="tag">Migration de code</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Projet Freelance - Maintenance Application Mobile Allemande</h3>
+          <p class="date">Juillet 2025</p>
+          <p class="description">
+            Maintenance d'une application mobile allemande (Plaka), ajout et
+            mise à jour de plusieurs fonctionnalités backend et frontend.
+            Amélioration des performances et de l'expérience utilisateur.
+          </p>
+          <div class="tags">
+            <span class="tag">Flutter</span>
+            <span class="tag">Dart</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">Docker</span>
+            <span class="tag">Nginx</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Projet Freelance - Architecture Backend SaaS</h3>
+          <p class="date">Juin 2025</p>
+          <p class="description">
+            Conception et initialisation d'une architecture backend pour une
+            entreprise SaaS. Mise en place d'une infrastructure scalable et
+            sécurisée avec les meilleures pratiques DevOps.
+          </p>
+          <div class="tags">
+            <span class="tag">TypeScript</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">Docker</span>
+            <span class="tag">Nginx</span>
+            <span class="tag">Architecture SaaS</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills">
+        <h2>Compétences</h2>
+
+        <div class="project">
+          <h3>Machine Learning et Deep Learning</h3>
+          <div class="tags">
+            <span class="tag">NumPy</span>
+            <span class="tag">Pandas</span>
+            <span class="tag">Scikit-learn</span>
+            <span class="tag">TensorFlow</span>
+            <span class="tag">PyTorch</span>
+            <span class="tag">Classification</span>
+            <span class="tag">Régression</span>
+            <span class="tag">Random Forests</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Manipulation et Visualisation de Données</h3>
+          <div class="tags">
+            <span class="tag">NumPy</span>
+            <span class="tag">Pandas</span>
+            <span class="tag">Matplotlib</span>
+            <span class="tag">Sklearn</span>
+            <span class="tag">Scipy</span>
+            <span class="tag">Scikit-learn</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Bases de Données</h3>
+          <p class="description">
+            Conception et Modélisation de bases de données relationnelles et
+            NoSQL
+          </p>
+          <div class="tags">
+            <span class="tag">MySQL</span>
+            <span class="tag">NoSQL</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">Firebase</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Développement</h3>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Java</span>
+            <span class="tag">JavaScript/TypeScript</span>
+            <span class="tag">Dart (Flutter)</span>
+            <span class="tag">C/C++</span>
+            <span class="tag">SQL</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>DevOps et Virtualisation</h3>
+          <div class="tags">
+            <span class="tag">Docker</span>
+            <span class="tag">Nginx</span>
+            <span class="tag">Kubernetes</span>
+            <span class="tag">VMware</span>
+            <span class="tag">VirtualBox</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Réseaux</h3>
+          <p class="description">
+            Routage statique et dynamique, TCP/IP, UDP, VLAN, NAT, DNS
+          </p>
+          <div class="tags">
+            <span class="tag">TCP/IP</span>
+            <span class="tag">UDP</span>
+            <span class="tag">VLAN</span>
+            <span class="tag">NAT</span>
+            <span class="tag">DNS</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Gestion de Versions</h3>
+          <div class="tags">
+            <span class="tag">Git</span>
+            <span class="tag">GitHub</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Langues</h3>
+          <p class="description">
+            <strong>Arabe :</strong> Langue maternelle<br />
+            <strong>Français :</strong> C1 (TCF TP)<br />
+            <strong>Anglais :</strong> B2 (EF SET)
+          </p>
+        </div>
+
+        <div class="project">
+          <h3>Compétences Transversales</h3>
+          <div class="tags">
+            <span class="tag">Travail en équipe et collaboration</span>
+            <span class="tag"
+              >Esprit analytique et résolution de problèmes</span
+            >
+            <span class="tag">Autonomie et capacité d'adaptation</span>
+            <span class="tag">Créativité et innovation</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2>Contact</h2>
+        <div class="contact-info">
+          <div class="contact-item">
+            <strong>Email :</strong> <span>ls_mamchaoui@esi.dz</span>
+          </div>
+          <div class="contact-item">
+            <strong>Téléphone :</strong> <span>(+213) 561452074</span>
+          </div>
+          <div class="contact-item">
+            <strong>Adresse :</strong> <span>Tlemcen, Algérie</span>
+          </div>
+          <div class="contact-item">
+            <strong>LinkedIn :</strong> <span>Disponible sur demande</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 MAMCHAOUI Selmane Abdelatif. Tous droits réservés.</p>
+    </footer>
+  </body>
+</html>
